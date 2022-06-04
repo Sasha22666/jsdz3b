@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Подсчет гласных</title>
+</head>
+
+<body>
+    <script>
+        'use strict'
+
+        let wordUser = prompt('Введите слово на русском языке'); //спрашиваем у пользователя слово
+        let wordAr = wordUser.toLowerCase().split(''); ; //преобразовываем строку к нижнему регистру и в массив букв
+
+        //1 способ
+        function vowelWordUser1(wordAr) {
+            let vowel_list = 'аиоуеёэюяы'; //строка, содержащая гласные
+            let vcount = 0; //счетчик
+            wordAr.forEach(element => {
+                if (vowel_list.includes(element))
+                    ++vcount;
+            });
+            return vcount;
+        }
+         //2 способ
+        function vowelWordUser2(wordAr) {
+            let vowel_list = 'аиоуеёэюяы'; //строка, содержащая гласные
+            let count = wordAr.filter(element => vowel_list.includes(element)).length;
+            return count;
+        }
+         //3 способ
+        function vowelWordUser3( wordAr) {
+            let vowel_list = 'аиоуеёэюяы'; //строка, содержащая гласные
+            let ar1 =  wordAr.reduce ((sum, val) => {
+            if (vowel_list.indexOf (val) !==-1) { 
+            sum++; // добавляем в кол-во найденных гласных +1
+            }
+        return sum; // Возвращаем новую сумму (или старую, если гласных нет).
+        }, 0); // Запускаем reduce с нулевой суммой
+        return ar1;
+        }
+       
+        console.log ("Способ 1 - гласных букв в слове: "+vowelWordUser1( wordAr));
+        console.log ("Способ 2 - гласных букв в слове: "+vowelWordUser2( wordAr));
+        console.log ("Способ 3 - гласных букв в слове: "+vowelWordUser3( wordAr));
+        
+    </script>
+</body>
+
+</html>
